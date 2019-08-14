@@ -135,7 +135,7 @@ export default {
 
 @media (min-width: 768px) {
   .container {
-    background-image: url(~/assets/img/login-bg.svg);
+    background-image: url(../assets/img/login-bg.svg);
     background-repeat: no-repeat;
     background-position: center 110px;
     background-size: 100%;
