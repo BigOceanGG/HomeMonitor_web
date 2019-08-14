@@ -31,6 +31,7 @@
   </div>
 </template>
 <script>
+import { NODE_IP } from '@/constants.js'
 export default {
   layout: 'blank',
   data() {
@@ -45,31 +46,17 @@ export default {
   },
   methods: {
     handleLogin() {
-      this.$refs.login.validate(valid => {
-        if (valid) {
-          this.loading = true;
-          this.$login
-            .login(this.params)
-            .then(({ data }) => {
-              this.loading = false;
-              if (data.status === 0) {
-                this.$store.commit('setLoggedUser', data.data);
-                this.$message.success({
-                  duration: 2000,
-                  message: '登录成功'
-                });
-                this.$router.replace({ name: 'index' });
-              } else {
-                this.$message.warning(data.errorMessage);
-              }
-            })
-            .catch(() => {
-              this.loading = false;
-            });
-        } else {
-          return false;
+      const url = NODE_IP + '/manager/login/loginSysUser'
+      this.$http.post(url, this.params).then(response => {
+        if (response.status !== 0){
+          this.$message.success({
+            duration: 2000,
+            message: '登录成功'
+          })
         }
-      });
+      }, respError => {
+        this.loading = false
+      })
     }
   }
 };
