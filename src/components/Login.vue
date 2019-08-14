@@ -53,6 +53,7 @@ export default {
             duration: 2000,
             message: '登录成功'
           })
+          this.$router.push('/list')
         }
       }, respError => {
         this.loading = false
