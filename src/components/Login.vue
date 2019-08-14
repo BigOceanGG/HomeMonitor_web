@@ -3,7 +3,7 @@
     <div class="content">
       <div class="top">
         <div class="header">
-          <img src="../assets/imgs/logo-main.png" class="logo" alt="logo">
+          <img src="../assets/img/logo.png" class="logo" alt="logo">
           <span class="title">BTC123 通行证</span>
         </div>
         <div class="desc">123通行证是区块链最具影响力的授权认证系统</div>
