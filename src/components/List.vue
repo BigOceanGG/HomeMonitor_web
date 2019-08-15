@@ -4,7 +4,7 @@
       <el-form :inline="true" label-suffix="：" size="small">
         <div>
           <el-form-item label="应用">
-            <el-input v-model="item.applicationName" placeholder="应用名称"></el-input>
+            <el-input v-model="query.applicationName" placeholder="应用名称"></el-input>
           </el-form-item>
           <el-form-item label="接入时间">
             <el-date-picker v-model="daterange" :picker-options="pickerOptions" type="daterange" range-separator="至" start-placeholder="开始日期" end-placeholder="结束日期" value-format="yyyy-MM-dd" @change="handleDateChange">
@@ -13,20 +13,20 @@
         </div>
         <div>
           <el-form-item label="应用类型">
-            <el-select v-model="item.applicationType" style="width: 140px;" placeholder="选择应用类型">
+            <el-select v-model="query.applicationType" style="width: 140px;" placeholder="选择应用类型">
               <el-option label="全部" value="0"></el-option>
               <el-option v-for="(v,k) in types" :key="k" :label="v" :value="k"></el-option>
             </el-select>
           </el-form-item>
           <el-form-item label="授权类型">
-            <el-select v-model="item.itemauthorizationType" style="width: 140px;" placeholder="选择授权类型">
+            <el-select v-model="query.itemauthorizationType" style="width: 140px;" placeholder="选择授权类型">
               <el-option label="全部" value="0"></el-option>
               <el-option label="登录授权" value="1"></el-option>
               <el-option label="登录授权+身份授权" value="2"></el-option>
             </el-select>
           </el-form-item>
           <el-form-item label="接入状态">
-            <el-select v-model="item.enabled" style="width: 140px;">
+            <el-select v-model="query.enabled" style="width: 140px;">
               <el-option label="全部" value="0"></el-option>
               <el-option label="启用" value="1"></el-option>
               <el-option label="禁用" value="2"></el-option>
@@ -145,6 +145,7 @@
 </template>
 
 <script>
+  import { NODE_IP } from '@/constants.js'
 export default {
   async asyncData({ app, query }) {
     const { data } = await app.$apps.list(query);
@@ -178,6 +179,13 @@ export default {
       },
       daterange: '',
       dialogVisible: false,
+      query: {
+        applicationName: '',
+        applicationType: '0',
+        endTime: '',
+        enabled: '0',
+        authorizationType: '0'
+      },
       item: {
         applicationName: '',
         applicationSummary: '',
@@ -203,7 +211,7 @@ export default {
       this.query.endTime = v ? `${v[1]} 23:59:59` : '';
     },
     onSearch() {
-      this.query.pageNum = 1;
+      this.item.pageNum = 1;
       this.fetch();
     },
     add() {
@@ -224,21 +232,36 @@ export default {
     },
     fetch() {
       this.loading = true;
-      this.$apps
-        .list(this.query)
-        .then(({ data }) => {
-          this.loading = false;
-          this.list = data.data.list;
-          this.total = data.data.total;
-          this.query = {
-            pageSize: data.data.pageSize,
-            pageNum: data.data.pageNum,
-            ...this.query
-          };
-        })
-        .catch(() => {
-          this.loading = false;
-        });
+      const url = NODE_IP + '/manager/app/findAppInfo'
+      this.$http.get(url, this.query).then(response => {
+        if (response.status !== 0) {
+          this.loading = false
+          // this.list = response.data.list
+          // this.total = response.data.total
+          // this.query = {
+          //   pageSize: data.data.pageSize,
+          //   pageNum: data.data.pageNum,
+          //   ...this.query
+          // }
+        }
+      }, respError => {
+        this.loading = false
+      })
+      // this.$apps
+      //   .list(this.query)
+      //   .then(({ data }) => {
+      //     this.loading = false;
+      //     this.list = data.data.list;
+      //     this.total = data.data.total;
+      //     this.query = {
+      //       pageSize: data.data.pageSize,
+      //       pageNum: data.data.pageNum,
+      //       ...this.query
+      //     };
+      //   })
+      //   .catch(() => {
+      //     this.loading = false;
+      //   });
     },
     handleSizeChange(val) {
       this.query.pageNum = 1;
