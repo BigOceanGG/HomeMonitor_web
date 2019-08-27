@@ -17,7 +17,7 @@ export default async ({ $axios, store, route, redirect, req }) => {
   }
 
   if (path === '/') {
-    return redirect('/login');
+    return redirect('/apps/list');
   }
   store.dispatch('loadBreadcumbData', route);
 };
