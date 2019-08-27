@@ -5,7 +5,7 @@
   "author": "ocean",
   "private": true,
   "scripts": {
-    "dev": "nuxt",
+    "dev": "cross-env NODE_ENV=development nodemon server/index.js --watch server",
     "build": "nuxt build",
     "start": "nuxt start",
     "generate": "nuxt generate",
@@ -13,11 +13,20 @@
     "precommit": "npm run lint"
   },
   "dependencies": {
-    "nuxt": "^2.0.0"
+    "nuxt": "^2.0.0",
+    "@nuxtjs/axios": "^5.0.0",
+    "date-fns": "^1.29.0",
+    "cookie": "^0.3.1",
+    "express": "^4.15.3",
+    "js-cookie": "^2.2.0",
+    "rapid.js": "^1.2.3",
+    "element-ui": "^2.2.1"
   },
   "devDependencies": {
     "babel-eslint": "^10.0.1",
+    "cross-env": "^5.2.0",
     "eslint": "^4.19.1",
+    "nodemon": "^1.11.0",
     "eslint-friendly-formatter": "^4.0.1",
     "eslint-loader": "^2.1.1",
     "eslint-plugin-vue": "^4.0.0"

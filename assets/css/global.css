@@ -1,0 +1,101 @@
+body,
+html {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  font-family: Helvetica Neue, Helvetica, PingFang SC, Hiragino Sans GB,
+    Microsoft YaHei, SimSun, sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  color: rgba(0, 0, 0, 0.65);
+  background-color: #fff;
+  -webkit-font-smoothing: antialiased;
+}
+
+#__layout,
+#__nuxt,
+body,
+html {
+  height: 100%;
+}
+
+canvas {
+  display: block;
+}
+
+body {
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+*,
+:after,
+:before {
+  box-sizing: border-box;
+}
+
+.el-container {
+  min-height: 100vh;
+  background: #f0f2f5;
+  overflow-x: hidden;
+}
+
+.card__content {
+  padding: 10px;
+}
+
+.card__title {
+  border-bottom: 1px solid #ddd;
+  padding: 10px;
+}
+
+.table {
+  width: 100%;
+  border-spacing: 0;
+}
+
+.table td,
+.table th {
+  border: 1px solid #ddd;
+  text-align: center;
+  height: 30px;
+}
+
+.info {
+  display: -webkit-flex;
+  display: -ms-flex;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.info__group {
+  display: -webkit-flex;
+  display: -ms-flex;
+  display: flex;
+  margin-top: 50px;
+}
+
+.info__label {
+  width: 80px;
+}
+
+.info__content {
+  width: 250px;
+}
+
+.el-pagination {
+  margin-top: 10px;
+  padding: 16px;
+  background-color: #fff;
+  text-align: right;
+}
+
+.action {
+  margin-right: 5px;
+}
+
+.el-card + .el-card {
+  margin-top: 16px;
+}
