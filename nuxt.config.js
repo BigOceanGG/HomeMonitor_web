@@ -1,4 +1,4 @@
-let baseURL = 'http://172.16.2.51:2500'; // 开发环境
+let baseURL = 'http://127.0.0.1:2500'; // 开发环境
 
 module.exports = {
   /*
