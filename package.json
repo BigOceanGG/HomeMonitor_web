@@ -17,7 +17,7 @@
     "@nuxtjs/axios": "^5.0.0",
     "date-fns": "^1.29.0",
     "cookie": "^0.3.1",
-    "express": "^4.15.3",
+    "express": "^4.17.3",
     "js-cookie": "^2.2.0",
     "rapid.js": "^1.2.3",
     "element-ui": "^2.2.1"
